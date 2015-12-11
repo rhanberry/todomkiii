@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>TODO LIST</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <!-- Minified angularjs -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script type="text/javascript" src="/js/angularctl.js">
+
+  </script>
+
+</head>
+
+<body>
+
+  <div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
+  <div class="row">
+    <form ng-submit="addTodolist(ab)">
+      <div class="col-lg-8">
+        <input class="form-control" placeholder="Enter Task" type="text" ng-model="ab.todoitem" required min="1" />
+        <input class="form-control" placeholder="Enter Description" type="text" ng-model="ab.tododescription" required min="1" />
+        <input class="form-control" placeholder="Task Complete?" type="text" ng-model="ab.iscomplete" required min="1" />
+
+      </div>
+    </form>
+
+    <button class="btn btn-primary" ng-disabled="!ab" ng-hide="editMode" ng-click="addTodolist(ab)">Add Entry</button>
+    <button type="btn btn-primary" class="btn btn-primary" ng-disabled="!ab" ng-show="editMode" ng-click="updateTodolist(ab)">Save</button>
+    <!--<button type="btn btn-primary" class="btn btn-primary" ng-click="resetTodolistField()">Reset</button>-->
+  </div>
+  <hr />
+
+
+
+  <div class="alert alert-info" style="width:400px;margin-left:100px;" ng-show="todo.length == 0">
+    No TODO list items!
+  </div>
+  <table class="table table-bordered table-striped" ng-show="todolist.length > 0">
+    <thead>
+      <tr>
+        <th style="text-align: center; width: 25px;">Delete</th>
+        <th style="text-align: center; width: 25px;">Update</th>
+        <th style="text-align: center;">Task Item</th>
+        <th style="text-align: center;">Description</th>
+        <th style="text-align: center;">Is it Complete?</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="todothing in todo">
+        <td style="width:70px;text-align:center;">
+          <button class="btn btn-mini btn-danger" ng-click="deleteTodolist(todo.indexOf(todothing))">Delete</button>
+        </td>
+        <td style="width:70px;text-align:center;">
+          <button class="btn btn-mini btn-danger" ng-click="editTodolist(todo.indexOf(todothing), todothing)">Update</button>
+        </td>
+        <td>{{todothing.todoitem}}</td>
+        <td>{{todothing.tododescription}}</td>
+        <td>{{todothing.isComplete}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</body>
+
+</html>
