@@ -7,6 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
+		<config>java:todo.runner.TodoRunner</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
